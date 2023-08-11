@@ -4,7 +4,7 @@ import MainCanvas from '@components/MainCanvas';
 
 const Home = () => {
   return (
-    <div className='app'>
+    <div className='app w-screen h-screen'>
         <MainCanvas/>
     </div>
   )
