@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { World } from "./World";
 import {
@@ -8,6 +8,8 @@ import {
   Stars,
   Sky,
   Environment,
+  PresentationControls,
+  OrbitControls
 } from "@react-three/drei";
 import { getProject, val, types } from "@theatre/core";
 import {
@@ -45,8 +47,10 @@ const MainCanvas = () => {
           window.renderer = gl;
         }}
         gl={{ preserveDrawingBuffer: true }}
+        
       >
         <ScrollControls pages={4} damping={.1}>
+      
           <SheetProvider sheet={sheet}>
             <Scene />
             <spotLight
@@ -82,6 +86,7 @@ const MainCanvas = () => {
               speed={1}
             />
             <Environment preset="dawn" />
+            
             <World />
             <PerspectiveCamera
               theatreKey="Camera"
@@ -92,6 +97,8 @@ const MainCanvas = () => {
               far={70}
             />
           </SheetProvider>
+
+          
         </ScrollControls>
       </Canvas>
     </Suspense>

@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.2.10 public/3d/world.glb
 */
 
 import React, { useRef, useEffect } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useGLTF, useAnimations, PresentationControls } from '@react-three/drei'
 
 
 import * as THREE from 'three';
@@ -22,6 +22,9 @@ export function World(props) {
   }, []);
   
   return (
+    <PresentationControls
+    snap global zoom={1} rotation={[0, 0, 0]} polar={[0, 0]} azimuth={[-Math.PI / 22, Math.PI / 22]} 
+   >
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <group name="posters" position={[0.054, 0.177, -0.396]} rotation={[Math.PI / 2, 0, -Math.PI / 2]} scale={[0.168, 1, 0.233]} />
@@ -341,6 +344,7 @@ export function World(props) {
         <mesh name="flame_yellow" geometry={nodes.flame_yellow.geometry} material={nodes.flame_yellow.material} position={[-1.167, -0.673, 1.38]} rotation={[0.244, 0, 0]} scale={0.544} />
       </group>
     </group>
+    </PresentationControls>
   )
 }
 

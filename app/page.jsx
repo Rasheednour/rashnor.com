@@ -6,9 +6,9 @@ import MainCanvas from '@components/MainCanvas';
 
 const Home = () => {
   return (
-    <div className='app w-screen h-screen'>
+    <div className='app w-screen h-screen' > 
 
-        <MainCanvas/>
+        <MainCanvas />
     </div>
   )
 }
