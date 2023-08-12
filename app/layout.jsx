@@ -1,5 +1,8 @@
 import "@styles/globals.css";
 
+import React, { Suspense } from "react";
+
+
 export const metadata = {
   title: "rashnor.com",
   description: "Full Stack Developer Portfolio",
@@ -15,7 +18,9 @@ const RootLayout = ({ children }) => {
           rel="stylesheet"
         ></link>
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        </body>
     </html>
   );
 };

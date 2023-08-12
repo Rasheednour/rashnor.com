@@ -5,6 +5,8 @@ Command: npx gltfjsx@6.2.10 public/3d/world.glb
 
 import React, { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
+
+
 import * as THREE from 'three';
 export function World(props) {
   const group = useRef()
@@ -18,6 +20,7 @@ export function World(props) {
       action.play();
     });
   }, []);
+  
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
