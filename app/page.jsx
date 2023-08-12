@@ -1,14 +1,16 @@
-import React, {Suspense} from 'react'
+'use client'
+import React, {Suspense, useState} from 'react'
 import "@styles/globals.css";
 import MainCanvas from '@components/MainCanvas';
-
+import ScrollPrompt from '@components/ScrollPrompt';
 
 
 const Home = () => {
+  const [hidePrompt, setHidePrompt] = useState(false)
   return (
-    <div className='app w-screen h-screen' > 
-
-        <MainCanvas />
+    <div className='app w-full h-full' > 
+        <ScrollPrompt hidePrompt={hidePrompt}/>
+        <MainCanvas hidePrompt={hidePrompt} setHidePrompt={setHidePrompt}/>
     </div>
   )
 }

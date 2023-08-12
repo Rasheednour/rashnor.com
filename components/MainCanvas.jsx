@@ -1,6 +1,6 @@
 "use client";
-import React, { Suspense, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { Suspense, useState, useRef, useEffect } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { World } from "./World";
 import {
   ScrollControls,
@@ -9,7 +9,8 @@ import {
   Sky,
   Environment,
   PresentationControls,
-  OrbitControls
+  OrbitControls,
+  Html
 } from "@react-three/drei";
 import { getProject, val, types } from "@theatre/core";
 import {
@@ -26,20 +27,29 @@ import walkthrough from '@public/walkthrough.json'
 // studio.extend(extension);
 // studio.initialize();
 
-const Scene = () => {
+const Scene = ({hidePrompt, setHidePrompt}) => {
   const sheet = useCurrentSheet();
-  const scroll = useScroll();
-
+  const scroll = useScroll()
+  
   useFrame(() => {
     const sequenceLength = val(sheet.sequence.pointer.length);
     sheet.sequence.position = scroll.offset * sequenceLength;
+    if (sheet.sequence.position > 0) {
+      if (!hidePrompt) {
+        setHidePrompt(true)
+        console.log("hidden prompt now")
+      }
+    }
   });
+
 };
 
-const MainCanvas = () => {
+const MainCanvas = ({hidePrompt, setHidePrompt}) => {
   const sheet = getProject("Walkthrough", {state:walkthrough}).sheet("Scene");
   
+  
 
+  
   return (
     <Suspense>
       <Canvas
@@ -49,10 +59,12 @@ const MainCanvas = () => {
         gl={{ preserveDrawingBuffer: true }}
         
       >
+        
+         
         <ScrollControls pages={4} damping={.1}>
       
           <SheetProvider sheet={sheet}>
-            <Scene />
+            <Scene hidePrompt={hidePrompt} setHidePrompt={setHidePrompt}/>
             <spotLight
               position={[0, 2, 0]}
               distance={10}
@@ -92,7 +104,7 @@ const MainCanvas = () => {
               theatreKey="Camera"
               makeDefault
               position={[0, 0, 0]}
-              fov={60}
+              fov={30}
               near={0.1}
               far={70}
             />
