@@ -10,46 +10,46 @@ import {
   Environment,
   PresentationControls,
   OrbitControls,
-  Html
+  Html,
 } from "@react-three/drei";
 import { getProject, val, types } from "@theatre/core";
 import {
   SheetProvider,
   PerspectiveCamera,
   useCurrentSheet,
+  editable as e,
 } from "@theatre/r3f";
-import * as core from '@theatre/core'
-
-import walkthrough from '@public/walkthrough.json'
-
+import * as core from "@theatre/core";
+import * as THREE from "three";
+import walkthrough from "@public/walkthrough.json";
+import AboutMe from "./AboutMe";
+import Skills from "./Skills";
+import ScrollPrompt from "./ScrollPrompt";
 // import studio from "@theatre/studio"
 // import extension from '@theatre/r3f/dist/extension'
 // studio.extend(extension);
 // studio.initialize();
 
-const Scene = ({hidePrompt, setHidePrompt}) => {
+const Scene = ({ hidePrompt, setHidePrompt }) => {
   const sheet = useCurrentSheet();
-  const scroll = useScroll()
-  
+  const scroll = useScroll();
+
   useFrame(() => {
     const sequenceLength = val(sheet.sequence.pointer.length);
     sheet.sequence.position = scroll.offset * sequenceLength;
     if (sheet.sequence.position > 0) {
       if (!hidePrompt) {
-        setHidePrompt(true)
-        console.log("hidden prompt now")
+        setHidePrompt(true);
       }
     }
   });
-
 };
 
-const MainCanvas = ({hidePrompt, setHidePrompt}) => {
-  const sheet = getProject("Walkthrough", {state:walkthrough}).sheet("Scene");
-  
-  
+const MainCanvas = ({ hidePrompt, setHidePrompt }) => {
+  const sheet = getProject("Walkthrough", {state: walkthrough}).sheet(
+    "Scene"
+  );
 
-  
   return (
     <Suspense>
       <Canvas
@@ -57,14 +57,10 @@ const MainCanvas = ({hidePrompt, setHidePrompt}) => {
           window.renderer = gl;
         }}
         gl={{ preserveDrawingBuffer: true }}
-        
       >
-        
-         
-        <ScrollControls pages={4} damping={.1}>
-      
+        <ScrollControls pages={4} damping={0.1}>
           <SheetProvider sheet={sheet}>
-            <Scene hidePrompt={hidePrompt} setHidePrompt={setHidePrompt}/>
+            <Scene hidePrompt={hidePrompt} setHidePrompt={setHidePrompt} />
             <spotLight
               position={[0, 2, 0]}
               distance={10}
@@ -98,7 +94,7 @@ const MainCanvas = ({hidePrompt, setHidePrompt}) => {
               speed={1}
             />
             <Environment preset="dawn" />
-            
+
             <World />
             <PerspectiveCamera
               theatreKey="Camera"
@@ -108,9 +104,22 @@ const MainCanvas = ({hidePrompt, setHidePrompt}) => {
               near={0.1}
               far={70}
             />
+            <e.mesh  theatreKey="scroll-prompt" visible position={[-.85, .8, -.85]} rotation={[0, Math.PI/4, 0]}>
+              <ScrollPrompt/>
+              <boxGeometry args={[1.5, 0.66, 0.01]} />
+              <meshStandardMaterial color="red" transparent opacity={0} />
+            </e.mesh>
+            <e.mesh theatreKey="about"  visible position={[0, 1, 0]} rotation={[0, Math.PI / 4, 0]}>
+              <boxGeometry args={[2.3, 0.66, 0.01]} />
+              <meshStandardMaterial color="red" transparent opacity={0} />
+              <AboutMe />
+            </e.mesh>
+            <e.mesh theatreKey="skills" visible position={[.2, .9, 0]} rotation={[0, 0 , 0]}>
+              <boxGeometry args={[2.3, 0.66, 0.01]} />
+              <meshStandardMaterial color="green" transparent opacity={0} />
+              <Skills />
+            </e.mesh>
           </SheetProvider>
-
-          
         </ScrollControls>
       </Canvas>
     </Suspense>

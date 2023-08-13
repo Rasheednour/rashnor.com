@@ -1,17 +1,25 @@
 import React, { useEffect } from "react";
-const ScrollPrompt = ({ hidePrompt }) => {
- 
+import { Html } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+const ScrollPrompt = () => {
+  const { gl } = useThree();
   return (
-    <div
-      className={`absolute z-10 ml-[50%] mt-[13%] w-56 h-32 flex flex-row transform translate-x-[-50%] transition-opacity duration-300 ${
-        !hidePrompt ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
+    <Html
+      style={{ pointerEvents: "none" }}
+      portal={{ current: gl.domElement.parentNode }}
+      transform
+      scale={0.2}
+      position={[0,0,0]}
     >
-      <p className="text-white text-lg font-mono absolute mt-[17%]">
-        Scroll to explore
-      </p>
-      <div className="icon-scroll"></div>
-    </div>
+      <div
+        className={
+          "scroll-prompt border-solid border-2"
+        }
+      >
+        <p className="text-white text-lg font-mono mt-7 ml-8">Scroll to explore</p>
+          <div className="icon-scroll"></div>
+      </div>
+    </Html>
   );
 };
 

@@ -9,7 +9,7 @@ const Home = () => {
   const [hidePrompt, setHidePrompt] = useState(false)
   return (
     <div className='app w-full h-full' > 
-        <ScrollPrompt hidePrompt={hidePrompt}/>
+        
         <MainCanvas hidePrompt={hidePrompt} setHidePrompt={setHidePrompt}/>
     </div>
   )
