@@ -58,6 +58,7 @@ const MainCanvas = ({ hidePrompt, setHidePrompt }) => {
           window.renderer = gl;
         }}
         gl={{ preserveDrawingBuffer: true }}
+        style={{touchAction: "none"}}
       >
         <ScrollControls pages={4} damping={0.1}>
           <SheetProvider sheet={sheet}>
