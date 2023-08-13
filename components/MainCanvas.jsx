@@ -25,6 +25,7 @@ import walkthrough from "@public/walkthrough.json";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import ScrollPrompt from "./ScrollPrompt";
+import { Fire } from "./Fire";
 // import studio from "@theatre/studio"
 // import extension from '@theatre/r3f/dist/extension'
 // studio.extend(extension);
@@ -93,9 +94,11 @@ const MainCanvas = ({ hidePrompt, setHidePrompt }) => {
               fade
               speed={1}
             />
-            <Environment preset="dawn" />
+            {/* <Environment preset="dawn" /> */}
+            <Environment files={'images/ice_lake.hdr'}/>
 
             <World />
+            <Fire/>
             <PerspectiveCamera
               theatreKey="Camera"
               makeDefault

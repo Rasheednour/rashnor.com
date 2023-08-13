@@ -338,10 +338,10 @@ export function World(props) {
         <mesh name="pc&floppies002" geometry={nodes['pc&floppies002'].geometry} material={materials.green_emission} position={[0.115, 0.014, -0.371]} />
         <mesh name="avatar002" geometry={nodes.avatar002.geometry} material={materials['black tshirt']} position={[-0.504, -0.228, 0.546]} rotation={[-0.049, 0.408, 0.277]} scale={[1, 0.942, 1]} />
         <mesh name="avatar003" geometry={nodes.avatar003.geometry} material={materials.grey_dark} position={[-0.504, -0.228, 0.546]} rotation={[-0.049, 0.408, 0.277]} scale={[1, 0.942, 1]} />
-        <mesh name="fire_logs" geometry={nodes.fire_logs.geometry} material={materials.fire_log} position={[-1.104, -0.86, 1.344]} rotation={[-1.563, 0.204, -1.608]} scale={[0.057, 0.245, 0.051]} />
+        {/* <mesh name="fire_logs" geometry={nodes.fire_logs.geometry} material={materials.fire_log} position={[-1.104, -0.86, 1.344]} rotation={[-1.563, 0.204, -1.608]} scale={[0.057, 0.245, 0.051]} />
         <mesh name="flame_red" geometry={nodes.flame_red.geometry} material={nodes.flame_red.material} position={[-1.174, -0.723, 1.38]} scale={0.413} />
         <mesh name="flame_white" geometry={nodes.flame_white.geometry} material={nodes.flame_white.material} position={[-1.146, -0.651, 1.365]} rotation={[0.244, 0, 0]} scale={0.699} />
-        <mesh name="flame_yellow" geometry={nodes.flame_yellow.geometry} material={nodes.flame_yellow.material} position={[-1.167, -0.673, 1.38]} rotation={[0.244, 0, 0]} scale={0.544} />
+        <mesh name="flame_yellow" geometry={nodes.flame_yellow.geometry} material={nodes.flame_yellow.material} position={[-1.167, -0.673, 1.38]} rotation={[0.244, 0, 0]} scale={0.544} /> */}
       </group>
     </group>
     </PresentationControls>
