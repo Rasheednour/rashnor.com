@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0.122 7.949 31.894 16.032" width="31.894" height="16.032" xmlns="http://www.w3.org/2000/svg">
+  <g display="none">
+    <rect x="-289.333" y="-102.656" display="inline" fill="#000000" width="473.333" height="236"/>
+  </g>
+  <g display="none">
+    <g display="inline">
+      <rect x="0" y="0" fill="#000000" width="32" height="32"/>
+    </g>
+    <g display="inline">
+      <rect x="4.369" y="4.369" width="23.262" height="23.262"/>
+    </g>
+    <line display="inline" fill="#000000" stroke="#FFD160" stroke-width="2" stroke-miterlimit="10" x1="10.516" y1="16" x2="24.362" y2="16"/>
+    <polyline display="inline" fill="#000000" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" points="16.028,22.556    9.463,15.99 16.009,9.444  "/>
+  </g>
+  <g>
+    <path d="M 0 24.018 L 32 24.018 L 32 7.949 L 0 7.949 L 0 24.018 Z M 4.369 25.185 L 27.631 25.185 L 4.369 25.185 Z" style="fill: rgb(0, 255, 112);"/>
+    <polygon points="12.028 10.151 10.614 8.737 3.361 15.99 10.633 23.262 12.047 21.848 7.199 17 27.377 17 27.377 15 7.179 15" style="fill: rgb(17, 66, 0);"/>
+  </g>
+</svg>

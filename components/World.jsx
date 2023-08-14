@@ -8,6 +8,7 @@ import { useGLTF, useAnimations, PresentationControls } from '@react-three/drei'
 
 
 import * as THREE from 'three';
+import { Monitor } from './Monitor';
 export function World(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/3d/world.glb')
@@ -218,7 +219,9 @@ export function World(props) {
           <mesh name="Cube193_7" geometry={nodes.Cube193_7.geometry} material={materials.red_light} />
           <mesh name="Cube193_8" geometry={nodes.Cube193_8.geometry} material={materials.rough_plastic_white_logo} />
         </group>
-        <mesh name="pc_monitor" geometry={nodes.pc_monitor.geometry} material={nodes.pc_monitor.material} position={[0.002, 0.086, -0.3]} />
+        <mesh name="pc_monitor" geometry={nodes.pc_monitor.geometry} material={nodes.pc_monitor.material} position={[0.002, 0.086, -0.3]}>
+          <Monitor  isAtPC={props.isAtPC}/>
+        </mesh>
         <group name="office_plants" position={[-0.739, -0.068, 0.22]} rotation={[0, 1.571, 0]} scale={0.647}>
           <mesh name="Cube004" geometry={nodes.Cube004.geometry} material={materials.brown_wood} />
           <mesh name="Cube004_1" geometry={nodes.Cube004_1.geometry} material={materials.earth} />

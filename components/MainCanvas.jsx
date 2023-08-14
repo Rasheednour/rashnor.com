@@ -26,18 +26,30 @@ import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import ScrollPrompt from "./ScrollPrompt";
 import { Fire } from "./Fire";
+import MonitorLight from "./MonitorLight";
 // import studio from "@theatre/studio"
 // import extension from '@theatre/r3f/dist/extension'
 // studio.extend(extension);
 // studio.initialize();
 
-const Scene = () => {
+const Scene = ({isAtPC, setIsAtPC}) => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
 
   useFrame(() => {
     const sequenceLength = val(sheet.sequence.pointer.length);
     sheet.sequence.position = scroll.offset * sequenceLength;
+    if (sheet.sequence.position > 5.25) {
+      if (!isAtPC) {
+        setIsAtPC(true);
+        console.log("at PC")
+      }
+    } else {
+      if (isAtPC) {
+        setIsAtPC(false);
+        console.log("outside PC")
+      }
+    }
   });
 };
 
@@ -45,6 +57,7 @@ const MainCanvas = ({isDaytime}) => {
   const sheet = getProject("Walkthrough", { state: walkthrough }).sheet(
     "Scene"
   );
+  const [isAtPC, setIsAtPC] = useState(false);
   return (
     <Suspense>
       <Canvas
@@ -56,7 +69,7 @@ const MainCanvas = ({isDaytime}) => {
       >
         <ScrollControls pages={4} damping={0.1}>
           <SheetProvider sheet={sheet}>
-            <Scene />
+            <Scene isAtPC={isAtPC} setIsAtPC={setIsAtPC}/>
             <spotLight
               position={[0, 2, 0]}
               distance={10}
@@ -90,7 +103,8 @@ const MainCanvas = ({isDaytime}) => {
               speed={1}
             />
             {isDaytime?<Environment preset="dawn" />: <Environment files={"images/ice_lake.hdr"} />}
-            <World />
+            <World isAtPC={isAtPC}/>
+            <MonitorLight/>
             <Fire />
             <PerspectiveCamera
               theatreKey="Camera"
