@@ -7,9 +7,10 @@ import UserInterface from '@components/UserInterface';
 
 const Home = () => {
   const [isDaytime, setIsDaytime] = useState(true)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className='app w-full h-full' > 
-        <UserInterface isDaytime={isDaytime} setIsDaytime={setIsDaytime}/>
+        <UserInterface isDaytime={isDaytime} setIsDaytime={setIsDaytime} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
         <MainCanvas isDaytime={isDaytime}/>
     </div>
   )
