@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 36 45" width="36" height="45" xmlns="http://www.w3.org/2000/svg">
+  <path d="M25.13,0a18.77,18.77,0,0,1,1.79,8A18.9,18.9,0,0,1,8,26.92a18.77,18.77,0,0,1-8-1.79A18.89,18.89,0,1,0,25.13,0Z" style="fill: rgb(255, 255, 255);"/>
+  <circle cx="9.5" cy="4.47" r="1.5" style="fill: rgb(255, 255, 255);"/>
+  <circle cx="17.5" cy="8.47" r="1.5" style="fill: rgb(255, 255, 255);"/>
+  <circle cx="8" cy="17.97" r="3" style="fill: rgb(255, 255, 255);"/>
+</svg>

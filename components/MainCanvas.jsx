@@ -31,26 +31,20 @@ import { Fire } from "./Fire";
 // studio.extend(extension);
 // studio.initialize();
 
-const Scene = ({ hidePrompt, setHidePrompt }) => {
+const Scene = () => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
 
   useFrame(() => {
     const sequenceLength = val(sheet.sequence.pointer.length);
     sheet.sequence.position = scroll.offset * sequenceLength;
-    if (sheet.sequence.position > 0) {
-      if (!hidePrompt) {
-        setHidePrompt(true);
-      }
-    }
   });
 };
 
-const MainCanvas = ({ hidePrompt, setHidePrompt }) => {
-  const sheet = getProject("Walkthrough", {state: walkthrough}).sheet(
+const MainCanvas = ({isDaytime}) => {
+  const sheet = getProject("Walkthrough", { state: walkthrough }).sheet(
     "Scene"
   );
-
   return (
     <Suspense>
       <Canvas
@@ -58,22 +52,22 @@ const MainCanvas = ({ hidePrompt, setHidePrompt }) => {
           window.renderer = gl;
         }}
         gl={{ preserveDrawingBuffer: true }}
-        style={{touchAction: "none"}}
+        style={{ touchAction: "none" }}
       >
         <ScrollControls pages={4} damping={0.1}>
           <SheetProvider sheet={sheet}>
-            <Scene hidePrompt={hidePrompt} setHidePrompt={setHidePrompt} />
+            <Scene />
             <spotLight
               position={[0, 2, 0]}
               distance={10}
-              intensity={12}
+              intensity={isDaytime?0:12}
               angle={0.65}
               color="white"
               penumbra={1.9}
             />
             <directionalLight
               name="skylight"
-              intensity={2.5}
+              intensity={isDaytime?0:2.5}
               decay={3}
               color="#6f8fff"
               position={[0.095, 9.303, 0.144]}
@@ -82,7 +76,7 @@ const MainCanvas = ({ hidePrompt, setHidePrompt }) => {
             ></directionalLight>
             <Sky
               distance={1000}
-              sunPosition={[0, 0, 0]}
+              sunPosition={isDaytime?[2, 1, 4]:[0,0,0]}
               inclination={0}
               azimuth={0.25}
             />
@@ -95,11 +89,9 @@ const MainCanvas = ({ hidePrompt, setHidePrompt }) => {
               fade
               speed={1}
             />
-            {/* <Environment preset="dawn" /> */}
-            <Environment files={'images/ice_lake.hdr'}/>
-
+            {isDaytime?<Environment preset="dawn" />: <Environment files={"images/ice_lake.hdr"} />}
             <World />
-            <Fire/>
+            <Fire />
             <PerspectiveCamera
               theatreKey="Camera"
               makeDefault
@@ -108,17 +100,32 @@ const MainCanvas = ({ hidePrompt, setHidePrompt }) => {
               near={0.1}
               far={70}
             />
-            <e.mesh  theatreKey="scroll-prompt" visible position={[-.85, .8, -.85]} rotation={[0, Math.PI/4, 0]}>
-              <ScrollPrompt/>
+            <e.mesh
+              theatreKey="scroll-prompt"
+              visible
+              position={[-0.85, 0.8, -0.85]}
+              rotation={[0, Math.PI / 4, 0]}
+            >
+              <ScrollPrompt />
               <boxGeometry args={[1.5, 0.66, 0.01]} />
               <meshStandardMaterial color="red" transparent opacity={0} />
             </e.mesh>
-            <e.mesh theatreKey="about"  visible position={[0, 1, 0]} rotation={[0, Math.PI / 4, 0]}>
+            <e.mesh
+              theatreKey="about"
+              visible
+              position={[0, 1, 0]}
+              rotation={[0, Math.PI / 4, 0]}
+            >
               <boxGeometry args={[2.3, 0.66, 0.01]} />
               <meshStandardMaterial color="red" transparent opacity={0} />
               <AboutMe />
             </e.mesh>
-            <e.mesh theatreKey="skills" visible position={[.2, .9, 0]} rotation={[0, 0 , 0]}>
+            <e.mesh
+              theatreKey="skills"
+              visible
+              position={[0.2, 0.9, 0]}
+              rotation={[0, 0, 0]}
+            >
               <boxGeometry args={[2.3, 0.66, 0.01]} />
               <meshStandardMaterial color="green" transparent opacity={0} />
               <Skills />

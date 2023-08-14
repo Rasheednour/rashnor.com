@@ -2,15 +2,15 @@
 import React, {Suspense, useState} from 'react'
 import "@styles/globals.css";
 import MainCanvas from '@components/MainCanvas';
-import ScrollPrompt from '@components/ScrollPrompt';
+import UserInterface from '@components/UserInterface';
 
 
 const Home = () => {
-  const [hidePrompt, setHidePrompt] = useState(false)
+  const [isDaytime, setIsDaytime] = useState(true)
   return (
     <div className='app w-full h-full' > 
-        
-        <MainCanvas hidePrompt={hidePrompt} setHidePrompt={setHidePrompt}/>
+        <UserInterface isDaytime={isDaytime} setIsDaytime={setIsDaytime}/>
+        <MainCanvas isDaytime={isDaytime}/>
     </div>
   )
 }
