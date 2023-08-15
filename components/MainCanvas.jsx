@@ -25,8 +25,8 @@ import walkthrough from "@public/walkthrough.json";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import ScrollPrompt from "./ScrollPrompt";
-import { Fire } from "./Fire";
 import MonitorLight from "./MonitorLight";
+import { Loader } from "@react-three/drei";
 // import studio from "@theatre/studio"
 // import extension from '@theatre/r3f/dist/extension'
 // studio.extend(extension);
@@ -59,7 +59,8 @@ const MainCanvas = ({isDaytime}) => {
   );
   const [isAtPC, setIsAtPC] = useState(false);
   return (
-    <Suspense>
+    <div className="absolute z-0 w-full h-full">
+    <Suspense fallback={null}>
       <Canvas
         onCreated={({ gl }) => {
           window.renderer = gl;
@@ -105,7 +106,7 @@ const MainCanvas = ({isDaytime}) => {
             {isDaytime?<Environment preset="dawn" />: <Environment files={"images/ice_lake.hdr"} />}
             <World isAtPC={isAtPC}/>
             <MonitorLight/>
-            <Fire />
+            
             <PerspectiveCamera
               theatreKey="Camera"
               makeDefault
@@ -147,7 +148,9 @@ const MainCanvas = ({isDaytime}) => {
           </SheetProvider>
         </ScrollControls>
       </Canvas>
-    </Suspense>
+      <Loader/>
+    </Suspense> 
+    </div>
   );
 };
 

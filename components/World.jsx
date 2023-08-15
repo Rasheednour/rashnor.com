@@ -9,12 +9,13 @@ import { useGLTF, useAnimations, PresentationControls } from '@react-three/drei'
 
 import * as THREE from 'three';
 import { Monitor } from './Monitor';
+import { Fire } from './Fire';
 export function World(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/3d/world.glb')
   const { actions } = useAnimations(animations, group)
   const waterMaterial = new THREE.MeshStandardMaterial({
-    color: 'cyan'
+    color: "rgb(77,96,167)"
 });
   useEffect(() => {
     Object.values(actions).forEach((action) => {
@@ -347,6 +348,7 @@ export function World(props) {
         <mesh name="flame_yellow" geometry={nodes.flame_yellow.geometry} material={nodes.flame_yellow.material} position={[-1.167, -0.673, 1.38]} rotation={[0.244, 0, 0]} scale={0.544} /> */}
       </group>
     </group>
+    <Fire/>
     </PresentationControls>
   )
 }

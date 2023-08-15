@@ -6,7 +6,7 @@ import DropDownMenu from "./DropDownMenu";
 import Logo from "./Logo";
 const UserInterface = ({ isDaytime, setIsDaytime, isMenuOpen, setIsMenuOpen }) => {
   return (
-    <div>
+    <div className="bg-white">
       <ToggleDayNight isDaytime={isDaytime} setIsDaytime={setIsDaytime} />
       <GithubButton/>
       <DropDownMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
