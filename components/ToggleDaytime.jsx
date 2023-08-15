@@ -9,13 +9,13 @@ const ToggleDaytime = ({ isDaytime, setIsDaytime }) => {
       {!isDaytime ? (
         <img
           src={"images/sun_white.svg"}
-          className="fixed z-10 w-12 right-5 bottom-3 cursor-pointer hover:rotate-12"
+          className="fixed z-10 w-10 sm:w-11 md:w-12 right-5 bottom-4 cursor-pointer hover:rotate-12"
           onClick={toggleTime}
         ></img>
       ) : (
         <img
           src={"images/moon_white.svg"}
-          className="fixed z-10 w-10 right-10 bottom-4 cursor-pointer hover:rotate-12"
+          className="fixed z-10 w-8 sm:w-9 md:w-11 right-5 bottom-4 cursor-pointer hover:rotate-12"
           onClick={toggleTime}
         ></img>
       )}
