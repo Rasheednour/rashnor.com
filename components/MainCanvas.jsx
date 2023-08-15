@@ -35,19 +35,18 @@ import { Loader } from "@react-three/drei";
 const Scene = ({isAtPC, setIsAtPC}) => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
+  const sequenceLength = val(sheet.sequence.pointer.length);
 
   useFrame(() => {
-    const sequenceLength = val(sheet.sequence.pointer.length);
+    
     sheet.sequence.position = scroll.offset * sequenceLength;
     if (sheet.sequence.position > 5.25) {
       if (!isAtPC) {
         setIsAtPC(true);
-        console.log("at PC")
       }
     } else {
       if (isAtPC) {
         setIsAtPC(false);
-        console.log("outside PC")
       }
     }
   });

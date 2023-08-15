@@ -7,10 +7,10 @@ const AboutMe = () => {
     <Html
       style={{ pointerEvents: "none" }}
       portal={{ current: gl.domElement.parentNode }}
-      position={[-1.185, 0.3, 0]}
+      position={[-1.03, 0.25, 0]}
       transform
       center
-      scale={0.14}
+      scale={0.12}
     >
       <div
         className="absolute z-10 flex row-auto"
