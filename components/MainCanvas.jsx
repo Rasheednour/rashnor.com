@@ -28,6 +28,7 @@ import Skills from "./Skills";
 import ScrollPrompt from "./ScrollPrompt";
 import MonitorLight from "./MonitorLight";
 import { Loader } from "@react-three/drei";
+import { Fire } from "./Fire";
 // import studio from "@theatre/studio"
 // import extension from '@theatre/r3f/dist/extension'
 // studio.extend(extension);
@@ -70,15 +71,14 @@ const MainCanvas = ({isDaytime, setScroll}) => {
     <div className="absolute z-0 w-full h-full">
     <Suspense fallback={null}>
       <Canvas
-        onCreated={({ gl }) => {
-          window.renderer = gl;
-        }}
-        gl={{ preserveDrawingBuffer: true }}
-        style={{ touchAction: "none" }}
+        // onCreated={({ gl }) => {
+        //   window.renderer = gl;
+        // }}
+        // gl={{ preserveDrawingBuffer: true }}
+        style={{ touchAction: "none"}}
       >
         <ScrollControls pages={4} damping={0.1}>
           <SheetProvider sheet={sheet}>
-            <Scene isAtPC={isAtPC} setIsAtPC={setIsAtPC}/>
             <AutoScroll setScroll={setScroll}/>
             <spotLight
               position={[0, 2, 0]}
@@ -113,6 +113,7 @@ const MainCanvas = ({isDaytime, setScroll}) => {
               speed={1}
             />
             {isDaytime?<Environment preset="dawn" />: <Environment files={"images/ice_lake.hdr"} />}
+            <Fire/>
             <World isAtPC={isAtPC}/>
             <MonitorLight/>
             
@@ -154,6 +155,7 @@ const MainCanvas = ({isDaytime, setScroll}) => {
               <meshStandardMaterial color="green" transparent opacity={0} />
               <Skills />
             </e.mesh>
+            <Scene isAtPC={isAtPC} setIsAtPC={setIsAtPC}/>
           </SheetProvider>
         </ScrollControls>
       </Canvas>

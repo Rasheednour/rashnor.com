@@ -4,21 +4,7 @@ const MonitorLight = () => {
   
   const lightRef = useRef();
   let lightIntensity = 1;
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (lightIntensity == 70) {
-        lightIntensity = 120;
-      } else {
-        lightIntensity = 70;
-      }
-      if (lightRef.current) {
-        lightRef.current.intensity = lightIntensity;
-      }
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  
   return (
     <rectAreaLight
       ref={lightRef}
@@ -26,7 +12,7 @@ const MonitorLight = () => {
       rotation={[-Math.PI, 0, 0]}
       width={.2}
       height={.2}
-      intensity={lightIntensity}
+      intensity={120}
       color={'green'}
     />
   );
