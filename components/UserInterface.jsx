@@ -5,12 +5,12 @@ import DropDownMenuButton from "./DropDownMenuButton";
 import DropDownMenu from "./DropDownMenu";
 import Logo from "./Logo";
 import LandingPage from "./LandingPage";
-const UserInterface = ({ isDaytime, setIsDaytime, isMenuOpen, setIsMenuOpen, exitLandingPage, setExitLandingPage }) => {
+const UserInterface = ({ isDaytime, setIsDaytime, isMenuOpen, setIsMenuOpen, exitLandingPage, setExitLandingPage, scroll }) => {
   return (
     <div className="bg-white">
       <ToggleDayNight isDaytime={isDaytime} setIsDaytime={setIsDaytime} />
       <GithubButton/>
-      <DropDownMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
+      <DropDownMenu isMenuOpen={isMenuOpen} scroll={scroll}/>
       <DropDownMenuButton isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
       <Logo/>
       {!exitLandingPage && <LandingPage setExitLandingPage={setExitLandingPage}/>}

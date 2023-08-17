@@ -4,6 +4,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { World } from "./World";
 import {
   ScrollControls,
+  Scroll,
   useScroll,
   Stars,
   Sky,
@@ -32,15 +33,17 @@ import { Loader } from "@react-three/drei";
 // studio.extend(extension);
 // studio.initialize();
 
+
+
+
 const Scene = ({isAtPC, setIsAtPC}) => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
-  
-
+  const sequenceLength = useRef(val(sheet.sequence.pointer.length));
   useFrame(() => {
-    const sequenceLength = val(sheet.sequence.pointer.length);
-    sheet.sequence.position = scroll.offset * sequenceLength;
-    if (sheet.sequence.position > 5.25) {
+    const newPosition = scroll.offset * sequenceLength.current;
+    sheet.sequence.position = newPosition;
+    if (newPosition > 5.25) {
       if (!isAtPC) {
         setIsAtPC(true);
       }
@@ -52,11 +55,17 @@ const Scene = ({isAtPC, setIsAtPC}) => {
   });
 };
 
-const MainCanvas = ({isDaytime}) => {
+const AutoScroll = ({setScroll}) => {
+  const scroll = useScroll();
+  setScroll(scroll);
+} 
+
+const MainCanvas = ({isDaytime, setScroll}) => {
   const sheet = getProject("Walkthrough", { state: walkthrough }).sheet(
     "Scene"
   );
   const [isAtPC, setIsAtPC] = useState(false);
+  
   return (
     <div className="absolute z-0 w-full h-full">
     <Suspense fallback={null}>
@@ -70,6 +79,7 @@ const MainCanvas = ({isDaytime}) => {
         <ScrollControls pages={4} damping={0.1}>
           <SheetProvider sheet={sheet}>
             <Scene isAtPC={isAtPC} setIsAtPC={setIsAtPC}/>
+            <AutoScroll setScroll={setScroll}/>
             <spotLight
               position={[0, 2, 0]}
               distance={10}
