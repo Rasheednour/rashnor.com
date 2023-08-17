@@ -348,7 +348,6 @@ export function World(props) {
         <mesh name="flame_yellow" geometry={nodes.flame_yellow.geometry} material={nodes.flame_yellow.material} position={[-1.167, -0.673, 1.38]} rotation={[0.244, 0, 0]} scale={0.544} /> */}
       </group>
     </group>
-    <Fire/>
     </PresentationControls>
   )
 }
