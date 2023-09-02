@@ -11,7 +11,7 @@ const Home = () => {
   const [exitLandingPage, setExitLandingPage] = useState(false);
   const [scroll, setScroll] = useState(null);
   return (
-    <div className='app w-screen h-screen' > 
+    <div className='app w-screen h-screen'  > 
         <UserInterface isDaytime={isDaytime} setIsDaytime={setIsDaytime} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} exitLandingPage={exitLandingPage} setExitLandingPage={setExitLandingPage} scroll={scroll}/>
         <MainCanvas isDaytime={isDaytime} setScroll={setScroll}/>
     </div>

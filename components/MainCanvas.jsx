@@ -34,10 +34,7 @@ import { Fire } from "./Fire";
 // studio.extend(extension);
 // studio.initialize();
 
-
-
-
-const Scene = ({isAtPC, setIsAtPC}) => {
+const Scene = ({ isAtPC, setIsAtPC }) => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
   const sequenceLength = useRef(val(sheet.sequence.pointer.length));
@@ -56,17 +53,17 @@ const Scene = ({isAtPC, setIsAtPC}) => {
   });
 };
 
-const AutoScroll = ({setScroll}) => {
+const AutoScroll = ({ setScroll }) => {
   const scroll = useScroll();
   setScroll(scroll);
-} 
+};
 
-const MainCanvas = ({isDaytime, setScroll}) => {
+const MainCanvas = ({ isDaytime, setScroll }) => {
   const sheet = getProject("Walkthrough", { state: walkthrough }).sheet(
     "Scene"
   );
   const [isAtPC, setIsAtPC] = useState(false);
-  
+
   return (
     <div className="absolute z-0 w-full h-full">
       <Canvas
@@ -74,22 +71,22 @@ const MainCanvas = ({isDaytime, setScroll}) => {
         //   window.renderer = gl;
         // }}
         // gl={{ preserveDrawingBuffer: true }}
-        // style={{ touchAction: "none"}}
+        style={{ touchAction: "none" }}
       >
         <ScrollControls pages={4} damping={0.1}>
           <SheetProvider sheet={sheet}>
-            <AutoScroll setScroll={setScroll}/>
+            <AutoScroll setScroll={setScroll} />
             <spotLight
               position={[0, 2, 0]}
               distance={10}
-              intensity={isDaytime?0:12}
+              intensity={isDaytime ? 0 : 12}
               angle={0.65}
               color="white"
               penumbra={1.9}
             />
             <directionalLight
               name="skylight"
-              intensity={isDaytime?0:2.5}
+              intensity={isDaytime ? 0 : 2.5}
               decay={3}
               color="#6f8fff"
               position={[0.095, 9.303, 0.144]}
@@ -98,11 +95,11 @@ const MainCanvas = ({isDaytime, setScroll}) => {
             ></directionalLight>
             <Sky
               distance={1000}
-              sunPosition={isDaytime?[2, 1, 4]:[0,0,0]}
+              sunPosition={isDaytime ? [2, 1, 4] : [0, 0, 0]}
               inclination={0}
               azimuth={0.25}
             />
-             <Stars
+            <Stars
               radius={100}
               depth={50}
               count={5000}
@@ -111,12 +108,28 @@ const MainCanvas = ({isDaytime, setScroll}) => {
               fade
               speed={1}
             />
-            
-            {isDaytime?<Environment preset="dawn" />: <Environment files={"images/ice_lake.hdr"} rotation-z={Math.PI /2}/>}
-            <Fire/>
-            <World isAtPC={isAtPC}/>
-            <MonitorLight/>
-            
+
+            {isDaytime ? (
+              <Environment preset="dawn" />
+            ) : (
+              <Environment
+                files={"images/ice_lake.hdr"}
+                rotation-z={Math.PI / 2}
+              />
+            )}
+            <PresentationControls
+              snap
+              global
+              zoom={1}
+              rotation={[0, 0, 0]}
+              polar={[0, 0]}
+              azimuth={[-Math.PI / 22, Math.PI / 22]}
+            >
+              <Fire style={{ touchAction: "none" }} />
+              <World isAtPC={isAtPC} style={{ touchAction: "none" }} />
+              <MonitorLight />
+            </PresentationControls>
+
             <PerspectiveCamera
               theatreKey="Camera"
               makeDefault
@@ -155,11 +168,9 @@ const MainCanvas = ({isDaytime, setScroll}) => {
               <meshStandardMaterial color="green" transparent opacity={0} />
               <Skills />
             </e.mesh>
-            <Scene isAtPC={isAtPC} setIsAtPC={setIsAtPC}/>
-            
+            <Scene isAtPC={isAtPC} setIsAtPC={setIsAtPC} />
           </SheetProvider>
         </ScrollControls>
-       
       </Canvas>
     </div>
   );
