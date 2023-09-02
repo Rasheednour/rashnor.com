@@ -9,13 +9,13 @@ const Skills = () => {
     <Html
       style={{ pointerEvents: "none" }}
       portal={{ current: gl.domElement.parentNode }}
-      position={[-1.05, 0.2, 0]}
+      position={[0, -.05, 0]}
       transform
       center
-      scale={0.115}
+      scale={0.13}
     >
     <div
-      className="absolute z-10 flex row-auto"
+      className="flex row-auto"
       style={{
         width: "650px",
         height: "180px",

@@ -102,7 +102,7 @@ const MainCanvas = ({isDaytime, setScroll}) => {
               inclination={0}
               azimuth={0.25}
             />
-            <Stars
+             <Stars
               radius={100}
               depth={50}
               count={5000}
@@ -111,7 +111,8 @@ const MainCanvas = ({isDaytime, setScroll}) => {
               fade
               speed={1}
             />
-            {isDaytime?<Environment preset="dawn" />: <Environment files={"images/ice_lake.hdr"} />}
+            
+            {isDaytime?<Environment preset="dawn" />: <Environment files={"images/ice_lake.hdr"} rotation-z={Math.PI /2}/>}
             <Fire/>
             <World isAtPC={isAtPC}/>
             <MonitorLight/>
@@ -122,7 +123,7 @@ const MainCanvas = ({isDaytime, setScroll}) => {
               position={[0, 0, 0]}
               fov={30}
               near={0.1}
-              far={70}
+              far={300}
             />
             <e.mesh
               theatreKey="scroll-prompt"
@@ -147,16 +148,18 @@ const MainCanvas = ({isDaytime, setScroll}) => {
             <e.mesh
               theatreKey="skills"
               visible
-              position={[0.2, 0.9, 0]}
+              position={[0.1, 0.8, 0]}
               rotation={[0, 0, 0]}
             >
-              <boxGeometry args={[2.3, 0.66, 0.01]} />
+              <boxGeometry args={[2.1, 0.66, 0.01]} />
               <meshStandardMaterial color="green" transparent opacity={0} />
               <Skills />
             </e.mesh>
             <Scene isAtPC={isAtPC} setIsAtPC={setIsAtPC}/>
+            
           </SheetProvider>
         </ScrollControls>
+       
       </Canvas>
     </div>
   );

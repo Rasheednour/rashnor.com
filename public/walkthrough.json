@@ -4,7 +4,7 @@
       "staticOverrides": {
         "byObject": {
           "Camera": {
-            "far": 70,
+            "far": 300,
             "position": {
               "x": 5.465817194621918,
               "y": 5.253365991842846,
