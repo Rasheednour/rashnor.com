@@ -126,7 +126,7 @@ const MainCanvas = ({ isDaytime, setScroll }) => {
               azimuth={[-Math.PI / 22, Math.PI / 22]}
             >
               <Fire style={{ touchAction: "none" }} />
-              <World isAtPC={isAtPC} style={{ touchAction: "none" }} />
+              <World isAtPC={isAtPC}  />
               <MonitorLight />
             </PresentationControls>
 

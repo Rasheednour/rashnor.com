@@ -158,10 +158,6 @@ export function Monitor({ isAtPC }) {
                             name="Pomodoor"
                             setCurrentProject={setCurrentProject}
                           />
-                          <Folder
-                            name="Tracker"
-                            setCurrentProject={setCurrentProject}
-                          />
                         </div>
                       ) : (
                         <div className="bio-content">
