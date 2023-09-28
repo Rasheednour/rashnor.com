@@ -143,7 +143,7 @@ export function Monitor({ isAtPC }) {
                             setCurrentProject={setCurrentProject}
                           />
                           <Folder
-                            name="PromptyDumpty"
+                            name="Promptron"
                             setCurrentProject={setCurrentProject}
                           />
                           <Folder
