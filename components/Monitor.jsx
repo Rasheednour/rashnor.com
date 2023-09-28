@@ -20,7 +20,7 @@ export function Monitor({ isAtPC }) {
       githubLink: "https://github.com/Rasheednour/rashnor.com",
       gifSrc: "rashnor_dev.gif",
     },
-    "PromptyDumpty": {
+    "Promptron": {
       description:
         "A web application designed to inspire creativity and facilitate the sharing of AI prompts for platforms like ChatGPT and Midjourney.",
       stacks: [
@@ -29,8 +29,8 @@ export function Monitor({ isAtPC }) {
         "MongoDB/Mongoose",
         "Firebase",
       ],
-      projectLink: "https://promptydumpty-pp86pxgil-rasheednour.vercel.app/",
-      githubLink: "https://github.com/Rasheednour/promptydumpty",
+      projectLink: "https://promptronai.vercel.app/",
+      githubLink: "https://github.com/Rasheednour/promptron",
       gifSrc: "prompty_dumpty.gif",
     },
     "TCG_Central": {
